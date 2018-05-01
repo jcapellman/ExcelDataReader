@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Lightweight and fast library written in C# for reading Microsoft Excel files (2.0-2007).</Description>
+    <Description>Lightweight and fast library written in C# for reading Microsoft Excel files (2.0-2007).
+
+Version 3.4 with the additional option to Leave the Stream Open</Description>
     <AssemblyTitle>ExcelDataReader</AssemblyTitle>
     <VersionPrefix>3.4.0</VersionPrefix>
     <Authors>ExcelDataReader developers</Authors>
@@ -10,13 +12,17 @@
     <AssemblyOriginatorKeyFile>..\ExcelDataReader.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <PackageId>ExcelDataReader</PackageId>
+    <PackageId>ExcelDataReader-OptionalStreams</PackageId>
     <PackageTags>excel;xls;xlsx</PackageTags>
     <PackageIconUrl>https://nugetgallery.blob.core.windows.net/icons/ExcelDataReader.2.1.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/ExcelDataReader/ExcelDataReader</PackageProjectUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <CodeAnalysisRuleSet>..\..\ExcelDataReader.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Product>ExcelDataReader-OptionalStreams</Product>
+    <AssemblyVersion>3.4.1.0</AssemblyVersion>
+    <FileVersion>3.4.1.0</FileVersion>
+    <Version>3.4.1</Version>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
