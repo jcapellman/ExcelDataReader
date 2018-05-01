@@ -99,6 +99,8 @@ namespace ExcelDataReader
 
         public string GetString(int i) => (string)GetValue(i);
 
+        protected bool LeaveOpen;
+
         public object GetValue(int i)
         {
             if (RowCells == null)

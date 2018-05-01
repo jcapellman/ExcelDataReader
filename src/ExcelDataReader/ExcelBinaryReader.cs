@@ -9,9 +9,11 @@ namespace ExcelDataReader
     /// </summary>
     internal class ExcelBinaryReader : ExcelDataReader<XlsWorkbook, XlsWorksheet>
     {
-        public ExcelBinaryReader(Stream stream, string password, Encoding fallbackEncoding)
+        public ExcelBinaryReader(Stream stream, string password, Encoding fallbackEncoding, bool leaveOpen = false)
         {
             Workbook = new XlsWorkbook(stream, password, fallbackEncoding);
+
+            LeaveOpen = leaveOpen;
 
             // By default, the data reader is positioned on the first result.
             Reset();
@@ -20,7 +22,12 @@ namespace ExcelDataReader
         public override void Close()
         {
             base.Close();
-            Workbook?.Stream?.Dispose();
+
+            if (!LeaveOpen)
+            {
+                Workbook?.Stream?.Dispose();
+            }
+
             Workbook = null;
         }
     }

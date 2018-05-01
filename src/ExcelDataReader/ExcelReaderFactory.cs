@@ -22,7 +22,7 @@ namespace ExcelDataReader
         /// <param name="fileStream">The file stream.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <returns>The excel data reader.</returns>
-        public static IExcelDataReader CreateReader(Stream fileStream, ExcelReaderConfiguration configuration = null)
+        public static IExcelDataReader CreateReader(Stream fileStream, ExcelReaderConfiguration configuration = null, bool leaveOpen = false)
         {
             if (configuration == null)
             {
@@ -72,7 +72,7 @@ namespace ExcelDataReader
         /// <param name="fileStream">The file stream.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <returns>The excel data reader.</returns>
-        public static IExcelDataReader CreateBinaryReader(Stream fileStream, ExcelReaderConfiguration configuration = null)
+        public static IExcelDataReader CreateBinaryReader(Stream fileStream, ExcelReaderConfiguration configuration = null, bool leaveOpen = false)
         {
             if (configuration == null)
             {
@@ -89,7 +89,7 @@ namespace ExcelDataReader
                 var document = new CompoundDocument(fileStream);
                 if (TryGetWorkbook(fileStream, document, out var stream))
                 {
-                    return new ExcelBinaryReader(stream, configuration.Password, configuration.FallbackEncoding);
+                    return new ExcelBinaryReader(stream, configuration.Password, configuration.FallbackEncoding, leaveOpen);
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace ExcelDataReader
             }
             else if (XlsWorkbook.IsRawBiffStream(probe))
             {
-                return new ExcelBinaryReader(fileStream, configuration.Password, configuration.FallbackEncoding);
+                return new ExcelBinaryReader(fileStream, configuration.Password, configuration.FallbackEncoding, leaveOpen);
             }
             else
             {
